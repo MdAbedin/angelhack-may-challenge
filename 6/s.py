@@ -41,7 +41,7 @@ def main():
         if s[l] == s[r]:
             return 1 + solve(l2,r2)
         else:
-            return 1 + max(solve(l2,r),solve(l,r2))
+            return 1 + min(solve(l2,r),solve(l,r2))
 
     print(solve(0,len(s)-1))
 

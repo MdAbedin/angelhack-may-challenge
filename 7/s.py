@@ -40,11 +40,10 @@ def main():
 
         grid = grid2
 
-        if "".join("".join(row) for row in grid) in seen:
-            break
-        else:
-            seen.add("".join("".join(row) for row in grid))
+        if "".join("".join(row) for row in grid) in seen: break
 
-    print(sum(2**(r*5+c) for r in range(5) for c in range(5)))
+        seen.add("".join("".join(row) for row in grid))
+
+    print(sum(2**(r*5+c) for r in range(5) for c in range(5) if grid[r][c] == "X"))
 
 for i in range(rd(int) if MULTIPLE_CASES else 1): main()
