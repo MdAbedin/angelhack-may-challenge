@@ -22,6 +22,29 @@ EPS = 10**-6
 MULTIPLE_CASES = 0
 
 def main():
-    pass
+    grid = "XXXX.X....X..X..X.X.XX.XX"
+    grid = [list(grid[i:i+5]) for i in range(0,len(grid),5)]
+    seen = set()
+
+    while True:
+        grid2 = [["."]*5 for i in range(5)]
+
+        for r in range(5):
+            for c in range(5):
+                x = sum(grid[r2][c2] == "X" for r2,c2 in [[r+1,c],[r-1,c],[r,c+1],[r,c-1]] if 0 <= r2 < 5 and 0 <= c2 < 5)
+
+                if grid[r][c] == "X":
+                    if x == 1: grid2[r][c] = "X"
+                else:
+                    if x in [1,2]: grid2[r][c] = "X"
+
+        grid = grid2
+
+        if "".join("".join(row) for row in grid) in seen:
+            break
+        else:
+            seen.add("".join("".join(row) for row in grid))
+
+    print(sum(2**(r*5+c) for r in range(5) for c in range(5)))
 
 for i in range(rd(int) if MULTIPLE_CASES else 1): main()

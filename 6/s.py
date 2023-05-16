@@ -22,6 +22,27 @@ EPS = 10**-6
 MULTIPLE_CASES = 0
 
 def main():
-    pass
+    s = "kjslaqpwoereeeeewwwefifjdksjdfhjdksdjfkdfdlddkjdjfjfjfjjjjfjffnefhkjgefkgjefkjgkefjekihutrieruhigtefhgbjkkkknbmssdsdsfdvneurghiueor"
+
+    @cache
+    def solve(l,r):
+        if len(set(s[l:r+1])) == 1: return 1
+
+        for i in range(l+1,r+1):
+            if s[i] != s[i-1]:
+                l2 = i
+                break
+
+        for i in range(r-1,l-1,-1):
+            if s[i] != s[i+1]:
+                r2 = i
+                break
+
+        if s[l] == s[r]:
+            return 1 + solve(l2,r2)
+        else:
+            return 1 + max(solve(l2,r),solve(l,r2))
+
+    print(solve(0,len(s)-1))
 
 for i in range(rd(int) if MULTIPLE_CASES else 1): main()

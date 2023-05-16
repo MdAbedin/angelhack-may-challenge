@@ -22,6 +22,15 @@ EPS = 10**-6
 MULTIPLE_CASES = 0
 
 def main():
-    pass
+    effs = [1, 3, 54, 712, 52, 904, 113, 12, 135, 32, 31, 56, 23, 79, 611, 123, 677, 232, 997, 101, 111,123, 2, 7, 24, 57, 99, 45, 666, 42, 104, 129, 554, 335, 876, 35, 15, 93, 13]
+    ans = inf
+
+    for excl in effs:
+        effs2 = effs[:]
+        effs2.remove(excl)
+        effs2.sort()
+        ans = min(ans,sum(effs2[i+1]-effs2[i] for i in range(0,len(effs2),2)))
+
+    print(ans)
 
 for i in range(rd(int) if MULTIPLE_CASES else 1): main()
