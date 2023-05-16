@@ -22,6 +22,13 @@ EPS = 10**-6
 MULTIPLE_CASES = 0
 
 def main():
-    pass
+    n = "1867"
+    works = []
+
+    for perm in permutations(n):
+        n2 = int("".join(perm))
+        if n2%7 == 0: works.append(n2)
+
+    print((max(works)+min(works))/2)
 
 for i in range(rd(int) if MULTIPLE_CASES else 1): main()
